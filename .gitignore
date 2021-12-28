@@ -1,7 +1,7 @@
 #for test
-main.c
 a.out
 a.out.dSYM/
+*.txt
 
 #.o files
 *.o
@@ -9,5 +9,3 @@ a.out.dSYM/
 #.a file
 libft.a
 libft.so
-
-*.txt
