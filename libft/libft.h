@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:49:07 by kychoi            #+#    #+#             */
-/*   Updated: 2021/12/28 17:21:51 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2021/12/29 08:14:31 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,10 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* get_next_line */
-# ifndef OPEN_MAX
+# ifndef GNL
+#  define GNL
 #  define OPEN_MAX 32
-# endif
-# ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
-# endif
 char	*get_next_line(int fd);
+# endif
 #endif
