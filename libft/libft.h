@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:49:07 by kychoi            #+#    #+#             */
-/*   Updated: 2021/12/29 08:14:31 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2021/12/29 08:36:20 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <stdio.h> // TO_REMOVE : after add my ft_printf on libft
 
 /* ctype */
 int		ft_isalpha(int c);
