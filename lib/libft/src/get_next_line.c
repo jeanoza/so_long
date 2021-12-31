@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 09:58:55 by kychoi            #+#    #+#             */
-/*   Updated: 2021/12/28 15:51:24 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2021/12/30 19:11:38 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,3 +116,9 @@ char	*get_next_line(int fd)
 	backup[fd] = ft_move_cursor(backup[fd]);
 	return (current);
 }
+
+/** loop for check gnl
+char	*str;
+while ((str = get_next_line(fd)) != NULL)
+	printf("%s", str);
+*/
