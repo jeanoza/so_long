@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/29 08:34:41 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2021/12/31 17:57:51 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2021/12/31 18:24:13 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,14 @@ static void	parse_map(t_map *map, const char *path)
 	int		i;
 	size_t	len;
 	char	*current_line;
-	t_map	*tmp;
+	t_map	tmp;
 
 	fd = open(path, O_RDONLY);
 	current_line = get_next_line(fd);
 	len = ft_strlen(current_line);
-	tmp = malloc(sizeof(*tmp));
+	// tmp = malloc(sizeof(tmp));
 	if (ft_strchr(current_line, '\n'))
 		--len;
-
-	printf("len:%d\n", len);
 	while (current_line != NULL)
 	{
 		i = 0;
@@ -67,17 +65,17 @@ static void	parse_map(t_map *map, const char *path)
 		{
 			if (current_line[i] != '\n')
 			{
-				tmp->symbol = current_line[i];
-				tmp->x = (i % len);
-				tmp->y = (i / len);
-				printf("i:%d\n", i);
-				ft_map_add_back(&map, tmp);
+				tmp.symbol = current_line[i];
+				tmp.x = (i % len);
+				tmp.y = (i / len);
+				printf("curr_line:%s\nx:%d y:%d symbol:%c (i:%d)\n", current_line, tmp.x, tmp.y, tmp.symbol, i);
+				ft_map_add_back(&map, &tmp);
 			}
 			++i;
 		}
-		// current_line = get_next_line(fd);
+		current_line = get_next_line(fd);
 	}
-	free(tmp);
+	// free(tmp);
 }
 
 
