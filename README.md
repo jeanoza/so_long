@@ -5,6 +5,7 @@
 
 ```zsh
   $ gcc src/main.c -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
+  gcc src/main.c -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
 ```
 
 ### FIXME

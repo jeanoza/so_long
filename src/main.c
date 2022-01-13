@@ -3,93 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/29 08:34:41 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2021/12/31 18:24:13 by kyubongchoi      ###   ########.fr       */
+/*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
+/*   Updated: 2022/01/09 17:23:19 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_map_add_back(t_map **alst, t_map *new)
-{
-	t_map	*tmp;
-
-	if (!(*alst))
-	{
-		*alst = new;
-		return ;
-	}
-	tmp = *alst;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	tmp->next = new;
-}
-
-static int	get_map_size(const char *path)
-{
-	int		fd;
-	char	buffer[MAP_BUFFER_SIZE];
-	int		size;
-
-	fd = open(path, O_RDONLY);
-	size = 0;
-	while (read(fd, buffer, MAP_BUFFER_SIZE))
-	{
-		if (buffer[0] != '\n')
-			++size;
-	}
-	close(fd);
-	return (size);
-}
-
-static void	parse_map(t_map *map, const char *path)
-{
-	int		fd;
-	int		i;
-	size_t	len;
-	char	*current_line;
-	t_map	tmp;
-
-	fd = open(path, O_RDONLY);
-	current_line = get_next_line(fd);
-	len = ft_strlen(current_line);
-	// tmp = malloc(sizeof(tmp));
-	if (ft_strchr(current_line, '\n'))
-		--len;
-	while (current_line != NULL)
-	{
-		i = 0;
-		while (current_line[i])
-		{
-			if (current_line[i] != '\n')
-			{
-				tmp.symbol = current_line[i];
-				tmp.x = (i % len);
-				tmp.y = (i / len);
-				printf("curr_line:%s\nx:%d y:%d symbol:%c (i:%d)\n", current_line, tmp.x, tmp.y, tmp.symbol, i);
-				ft_map_add_back(&map, &tmp);
-			}
-			++i;
-		}
-		current_line = get_next_line(fd);
-	}
-	// free(tmp);
-}
-
-
 int	main(int ac, char **av)
 {
-	int		map_size;
-	t_map	*map;
+	int	fd;
+	char	*tmp;
+	int	i;
 
-	(void)ac;
-	map_size = get_map_size(av[1]);
-	printf("ms:%d\n", map_size);
-	map = (t_map *)malloc(sizeof(t_map) * map_size);
-	parse_map(map, av[1]);
-
+	fd = open(av[1], O_RDONLY);
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		i = 0;
+		while (tmp[i] && tmp[i] != '\n')
+		{
+			write(1, &tmp[i], 1);
+			++i;
+		}
+		tmp = get_next_line(fd);
+	}
+	close(fd);
 	return (0);
 }
 
@@ -100,4 +41,18 @@ int	main(int ac, char **av)
 	win = mlx_new_window(mlx, 640, 640, "hello");
 	mlx_pixel_put(mlx, win, 50, 50, 0x00FFFFFF);
 	mlx_loop(mlx);
+	*/
+
+	/* gnl test
+	int	fd;
+	char	*tmp;
+
+	fd = open(av[1], O_RDONLY);
+	tmp = get_next_line(fd);
+	while (tmp)
+	{
+		printf("%s", tmp);
+		tmp = get_next_line(fd);
+	}
+	close(fd);
 	*/
