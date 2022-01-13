@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/13 12:53:13 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/13 12:54:23 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int ac, char **av)
 		while (tmp[i] && tmp[i] != '\n')
 		{
 			write(1, &tmp[i], 1);
-			i++;
+			++i;
 		}
 		tmp = get_next_line(fd);
 	}
