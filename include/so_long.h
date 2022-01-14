@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/13 12:50:47 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:20:03 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,15 @@
 # include "libft.h"
 # include "mlx.h"
 
-# ifndef MAP_BUFFER_SIZE
-#  define MAP_BUFFER_SIZE 1
-# endif
+// # ifndef MAP_BUFFER_SIZE
+// #  define MAP_BUFFER_SIZE 1
+// # endif
 
-typedef struct s_map
+typedef struct s_game
 {
-	char			symbol;
-	int				x;
-	int				y;
-	struct s_map	*next;
-}	t_map;
+	int		row;
+	int		col;
+	char	**map;
+}	t_game;
 
 #endif

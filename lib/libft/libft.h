@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:49:07 by kychoi            #+#    #+#             */
-/*   Updated: 2021/12/29 08:36:20 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/13 12:59:20 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 #  define GNL
 #  define OPEN_MAX 32
 #  define BUFFER_SIZE 32
+
 char	*get_next_line(int fd);
 # endif
 #endif

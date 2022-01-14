@@ -6,30 +6,47 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/13 12:54:23 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/14 15:07:35 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+int	get_map_col(char *path, t_game *game)
 {
-	int	fd;
+	int		fd;
 	char	*tmp;
-	int	i;
 
-	fd = open(av[1], O_RDONLY);
+	fd = open(path, O_RDONLY);
 	tmp = get_next_line(fd);
+	game->row = ft_strlen(tmp);
+	if (ft_strrchr(tmp, '\n'))
+		game->row -= 1;
+	game->col = 0;
 	while (tmp)
 	{
-		i = 0;
-		while (tmp[i] && tmp[i] != '\n')
-		{
-			write(1, &tmp[i], 1);
-			++i;
-		}
 		tmp = get_next_line(fd);
+		++(game->col);
 	}
+	close(fd);
+	return (game->row * game->col);
+}
+
+// int	parse_map(char *path, t_game *game)
+
+int	main(int ac, char **av)
+{
+	int		map_size;
+	t_game	*game;
+	int		fd;
+
+	game = malloc(sizeof(t_game));
+	game->map = malloc(sizeof(char *) * get_map_col(av[1], game));
+
+	printf("row:%d col:%d\n",game->row, game->col);
+	
+
+	fd = open(av[1], O_RDONLY);
 	close(fd);
 	return (0);
 }
