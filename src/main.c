@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/14 15:07:35 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:10:19 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	get_map_col(char *path, t_game *game)
 
 	fd = open(path, O_RDONLY);
 	tmp = get_next_line(fd);
-	game->row = ft_strlen(tmp);
-	if (ft_strrchr(tmp, '\n'))
-		game->row -= 1;
+	game->row = ft_strlen(tmp) - 1;
 	game->col = 0;
 	while (tmp)
 	{
@@ -29,26 +27,45 @@ int	get_map_col(char *path, t_game *game)
 		++(game->col);
 	}
 	close(fd);
-	return (game->row * game->col);
+	return (game->col);
 }
 
-// int	parse_map(char *path, t_game *game)
+/**
+ * @param {char *}
+ * @param {t_game *}
+ * @returns {EXIT_SUCCESS | EXIT_FAILURE}
+ */
+int	parse_map(char *path, t_game *game)
+{
+	int		fd;
+	int		i;
+	char	*tmp;
+
+	fd = open(path, O_RDONLY);
+	tmp = get_next_line(fd);
+	i = 0;
+	while (tmp)
+	{
+		(game->map)[i++] = ft_strndup_free(tmp, game->row);
+		tmp = get_next_line(fd);
+	}
+	close(fd);
+	return (EXIT_SUCCESS);
+}
 
 int	main(int ac, char **av)
 {
-	int		map_size;
 	t_game	*game;
-	int		fd;
+	int		i;
 
+	(void)ac;
 	game = malloc(sizeof(t_game));
 	game->map = malloc(sizeof(char *) * get_map_col(av[1], game));
-
-	printf("row:%d col:%d\n",game->row, game->col);
-	
-
-	fd = open(av[1], O_RDONLY);
-	close(fd);
-	return (0);
+	if (parse_map(av[1], game) == EXIT_FAILURE)
+		exit(EXIT_FAILURE);
+		//TODO:ERROR HANDLE with exit()
+	printf("row:%d col:%d\n\n",game->row, game->col);
+	return (EXIT_SUCCESS);
 }
 
 	/* basic command
