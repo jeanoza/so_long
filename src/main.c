@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/20 00:04:28 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/20 00:14:45 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	render(t_image *img, t_game *game)
 				mlx_put_image_to_window(game->mlx, game->win, img->exit, i * BLOCK_SIZE, j * BLOCK_SIZE);
 			else if (game->map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx, game->win, img->player, i * BLOCK_SIZE, j * BLOCK_SIZE);
-			printf("i:%d, j:%d\n", i,j);
+			printf("i:%d, j:%d [char:%c, row:%d, col:%d]\n", i,j, game->map[i][j], game->row, game->col);
 			++j;
 		}
 		++i;
