@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/19 01:26:19 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/20 00:04:28 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
  * @param {t_game *} game
  * @returns {int} col
  */
-int	get_map_col(char *path, t_game *game)
+int	get_map_col(t_game *game)
 {
 	int		fd;
 	char	*tmp;
 
-	fd = open(path, O_RDONLY);
+	fd = open(game->path, O_RDONLY);
 	tmp = get_next_line(fd);
 	game->row = ft_strlen(tmp) - 1;
 	game->col = 0;
@@ -40,13 +40,13 @@ int	get_map_col(char *path, t_game *game)
  * @param {t_game *}
  * @returns {EXIT_SUCCESS | EXIT_FAILURE}
  */
-int	parse_map(char *path, t_game *game)
+int	parse_map(t_game *game)
 {
 	int		fd;
 	int		i;
 	char	*tmp;
 
-	fd = open(path, O_RDONLY);
+	fd = open(game->path, O_RDONLY);
 	tmp = get_next_line(fd);
 	i = 0;
 	while (tmp)
@@ -58,55 +58,72 @@ int	parse_map(char *path, t_game *game)
 	return (EXIT_SUCCESS);
 }
 
-int	main(int ac, char **av)
+int	game_init(char *path, t_game *game)
 {
-	t_game	*game;
-	int		i;
-	int		j;
-
-	(void)ac;
-	game = malloc(sizeof(t_game));
-	game->map = malloc(sizeof(char *) * get_map_col(av[1], game));
-	if (parse_map(av[1], game) == EXIT_FAILURE)
+	game->path = ft_strdup(path);
+	game->map = malloc(sizeof(char *) * get_map_col(game));
+	if (parse_map(game) == EXIT_FAILURE)
 		exit(EXIT_FAILURE);
 
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (game->row) * BLOCK_SIZE, (game->col) * BLOCK_SIZE, "test");
+	return (EXIT_SUCCESS);
+}
 
+int	image_init(t_image *img, t_game *game)
+{
+	int		width;
+	int		height;
 
-	//img struct
+	width = BLOCK_SIZE;
+	height = BLOCK_SIZE;
+	img->wall = mlx_xpm_file_to_image(game->mlx, "./asset/images/stone.xpm", &width, &height);
+	img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/tile00.xpm", &width, &height);
+	img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/ball.xpm", &width, &height);
+	img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/ladder.xpm", &width, &height);
+	img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/player_S00.xpm", &width, &height);
+	return (EXIT_SUCCESS);
+}
 
-	typedef struct s_img {
-		void	*image;
-		int		w;
-		int		h;
-	} t_img;
-	
-	t_img *img;
-
-	img = malloc(sizeof(t_img));
-	img->w = BLOCK_SIZE;
-	img->h = BLOCK_SIZE;
-
-	img->image = mlx_xpm_file_to_image(game->mlx, "./asset/images/stone.xpm", &img->w, &img->h);
+int	render(t_image *img, t_game *game)
+{
+	int		i;
+	int		j;
 	i = 0;
 	while (i < game->col)
 	{
 		j = 0;
 		while (j < game->row)
 		{
-			//TODO: Change struct {char, *func}
 			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, img->image, i * BLOCK_SIZE, j * BLOCK_SIZE);
-				
-			// else if (game->map[i][j] == '0');
-			// else if (game->map[i][j] == 'C');
-			// else if (game->map[i][j] == 'E');
-			// else if (game->map[i][j] == 'P');
+				mlx_put_image_to_window(game->mlx, game->win, img->wall, i * BLOCK_SIZE, j * BLOCK_SIZE);
+			else if (game->map[i][j] == '0')
+				mlx_put_image_to_window(game->mlx, game->win, img->empty, i * BLOCK_SIZE, j * BLOCK_SIZE);
+			else if (game->map[i][j] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, img->collect, i * BLOCK_SIZE, j * BLOCK_SIZE);
+			else if (game->map[i][j] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, img->exit, i * BLOCK_SIZE, j * BLOCK_SIZE);
+			else if (game->map[i][j] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win, img->player, i * BLOCK_SIZE, j * BLOCK_SIZE);
+			printf("i:%d, j:%d\n", i,j);
 			++j;
 		}
 		++i;
 	}
+	return (EXIT_SUCCESS);
+}
+
+int	main(int ac, char **av)
+{
+	t_game	*game;
+	t_image *img;
+
+	game = malloc(sizeof(t_game));
+	if (game_init(av[1], game) == EXIT_FAILURE)
+		exit(EXIT_FAILURE);
+	img = malloc(sizeof(t_image));
+	image_init(img, game);
+	render(img, game);
 	mlx_loop(game->mlx);
 	return (EXIT_SUCCESS);
 }

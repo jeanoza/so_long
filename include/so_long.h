@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/19 00:57:33 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/20 00:01:51 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,18 @@ typedef struct s_game
 {
 	int		row;
 	int		col;
+	char	*path;
 	char	**map;
 	void	*mlx;
 	void	*win;
-	void	*img;
 }	t_game;
+
+typedef struct s_image {
+	void	*wall;
+	void	*empty;
+	void	*collect;
+	void	*exit;
+	void	*player;
+}	t_image;
 
 #endif
