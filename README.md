@@ -11,3 +11,5 @@
 ### FIXME
 
 1.  src or srcs? include or includes ..... etc
+
+reference: https://github.com/devleomk1/so_long
