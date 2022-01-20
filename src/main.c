@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/20 22:11:36 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/20 23:24:45 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,52 +66,49 @@ int	game_init(char *path, t_game *game)
 		exit(EXIT_FAILURE);
 
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, (game->row) * BLOCK_SIZE, (game->col) * BLOCK_SIZE, "test");
+	game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE, (game->col) * B_SIZE, "test");
 	return (EXIT_SUCCESS);
 }
 
 int	image_init(t_image *img, t_game *game)
 {
-	int		w64;
-	int		h64;
-	int		w32;
-	int		h32;
-
-	w64 = BLOCK_SIZE;
-	h64 = BLOCK_SIZE;
-	w32 = BLOCK_SIZE / 2;
-	h32 = BLOCK_SIZE / 2;
-	img->wall = mlx_xpm_file_to_image(game->mlx, "./asset/images/stone.xpm", &w64, &h64);
-	img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/tile00.xpm", &w64, &h64);
-	img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/goldenball32.xpm", &w32, &h32);
-	img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/ladder.xpm", &w64, &h64);
-	img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/harry.xpm", &w64, &h64);
+	img->size64 = B_SIZE;
+	img->size32 = B_SIZE / 2;
+	img->wall = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/stone.xpm", &img->size64, &img->size64);
+	// img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/tile00.xpm", &img->size64, &img->size64);
+	img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/sea.xpm", &img->size64, &img->size64);
+	img->collect = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/goldenball32.xpm", &img->size32, &img->size32);
+	img->exit = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/ladder.xpm", &img->size64, &img->size64);
+	img->player = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/ship64.xpm", &img->size64, &img->size64);
 	return (EXIT_SUCCESS);
 }
 
-// void    *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);
 int	render(t_image *img, t_game *game)
 {
 	int		i;
 	int		j;
+
 	i = 0;
 	while (i < game->col)
 	{
 		j = 0;
 		while (j < game->row)
 		{
-			mlx_put_image_to_window(game->mlx, game->win, img->empty, j * BLOCK_SIZE, i * BLOCK_SIZE);
+			mlx_put_image_to_window(game->mlx, game->win, img->empty, j * B_SIZE, i * B_SIZE);
 			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, img->wall, j * BLOCK_SIZE, i * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->wall, j * B_SIZE, i * B_SIZE);
 			else if (game->map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, img->empty, j * BLOCK_SIZE, i * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->empty, j * B_SIZE, i * B_SIZE);
 			else if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, img->collect, j * BLOCK_SIZE + BLOCK_SIZE/4, i * BLOCK_SIZE + BLOCK_SIZE/4);
+				mlx_put_image_to_window(game->mlx, game->win, img->collect, j * B_SIZE + B_SIZE / 4, i * B_SIZE + B_SIZE / 4);
 			else if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, img->exit, j * BLOCK_SIZE, i * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->exit, j * B_SIZE, i * B_SIZE);
 			else if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, img->player, j * BLOCK_SIZE, i * BLOCK_SIZE);
-			// printf("i:%d, j:%d [char:%c, row:%d, col:%d]\n", i,j, game->map[i][j], game->row, game->col);
+				mlx_put_image_to_window(game->mlx, game->win, img->player, j * B_SIZE, i * B_SIZE);
 			++j;
 		}
 		++i;

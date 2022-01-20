@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/20 22:06:09 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/20 22:23:25 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "libft.h"
 # include "mlx.h"
 
-# ifndef BLOCK_SIZE
-#  define BLOCK_SIZE 64
+# ifndef B_SIZE
+#  define B_SIZE 64
 # endif
 
 typedef struct s_game
@@ -38,6 +38,8 @@ typedef struct s_image {
 	void	*collect;
 	void	*exit;
 	void	*player;
+	int		size32;
+	int		size64;
 }	t_image;
 
 #endif
