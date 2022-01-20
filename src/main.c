@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/20 20:01:06 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/20 22:11:36 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,20 @@ int	game_init(char *path, t_game *game)
 
 int	image_init(t_image *img, t_game *game)
 {
-	int		width;
-	int		height;
+	int		w64;
+	int		h64;
+	int		w32;
+	int		h32;
 
-	width = BLOCK_SIZE;
-	height = BLOCK_SIZE;
-	img->wall = mlx_xpm_file_to_image(game->mlx, "./asset/images/stone.xpm", &width, &height);
-	img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/tile00.xpm", &width, &height);
-	img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/ball.xpm", &width, &height);
-	img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/ladder.xpm", &width, &height);
-	img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/player_S00.xpm", &width, &height);
+	w64 = BLOCK_SIZE;
+	h64 = BLOCK_SIZE;
+	w32 = BLOCK_SIZE / 2;
+	h32 = BLOCK_SIZE / 2;
+	img->wall = mlx_xpm_file_to_image(game->mlx, "./asset/images/stone.xpm", &w64, &h64);
+	img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/tile00.xpm", &w64, &h64);
+	img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/goldenball32.xpm", &w32, &h32);
+	img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/ladder.xpm", &w64, &h64);
+	img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/harry.xpm", &w64, &h64);
 	return (EXIT_SUCCESS);
 }
 
@@ -102,7 +106,7 @@ int	render(t_image *img, t_game *game)
 			else if (game->map[i][j] == '0')
 				mlx_put_image_to_window(game->mlx, game->win, img->empty, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			else if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, img->collect, j * BLOCK_SIZE, i * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->collect, j * BLOCK_SIZE + BLOCK_SIZE/4, i * BLOCK_SIZE + BLOCK_SIZE/4);
 			else if (game->map[i][j] == 'E')
 				mlx_put_image_to_window(game->mlx, game->win, img->exit, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			else if (game->map[i][j] == 'P')
