@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/20 00:14:45 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/20 20:01:06 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	image_init(t_image *img, t_game *game)
 	return (EXIT_SUCCESS);
 }
 
+// void    *mlx_png_file_to_image(void *mlx_ptr, char *file, int *width, int *height);
 int	render(t_image *img, t_game *game)
 {
 	int		i;
@@ -95,17 +96,18 @@ int	render(t_image *img, t_game *game)
 		j = 0;
 		while (j < game->row)
 		{
+			mlx_put_image_to_window(game->mlx, game->win, img->empty, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, img->wall, i * BLOCK_SIZE, j * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->wall, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			else if (game->map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, img->empty, i * BLOCK_SIZE, j * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->empty, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			else if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, img->collect, i * BLOCK_SIZE, j * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->collect, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			else if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, img->exit, i * BLOCK_SIZE, j * BLOCK_SIZE);
+				mlx_put_image_to_window(game->mlx, game->win, img->exit, j * BLOCK_SIZE, i * BLOCK_SIZE);
 			else if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, img->player, i * BLOCK_SIZE, j * BLOCK_SIZE);
-			printf("i:%d, j:%d [char:%c, row:%d, col:%d]\n", i,j, game->map[i][j], game->row, game->col);
+				mlx_put_image_to_window(game->mlx, game->win, img->player, j * BLOCK_SIZE, i * BLOCK_SIZE);
+			// printf("i:%d, j:%d [char:%c, row:%d, col:%d]\n", i,j, game->map[i][j], game->row, game->col);
 			++j;
 		}
 		++i;
