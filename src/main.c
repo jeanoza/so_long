@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/20 23:24:45 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/21 02:23:25 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,42 +76,43 @@ int	image_init(t_image *img, t_game *game)
 	img->size32 = B_SIZE / 2;
 	img->wall = mlx_xpm_file_to_image(game->mlx,
 			"./asset/images/stone.xpm", &img->size64, &img->size64);
-	// img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/tile00.xpm", &img->size64, &img->size64);
 	img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/sea.xpm", &img->size64, &img->size64);
-	img->collect = mlx_xpm_file_to_image(game->mlx,
-			"./asset/images/goldenball32.xpm", &img->size32, &img->size32);
-	img->exit = mlx_xpm_file_to_image(game->mlx,
-			"./asset/images/ladder.xpm", &img->size64, &img->size64);
-	img->player = mlx_xpm_file_to_image(game->mlx,
-			"./asset/images/ship64.xpm", &img->size64, &img->size64);
+	img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/cask_32.xpm", &img->size32, &img->size32);
+	img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/ladder.xpm", &img->size64, &img->size64);
+	// img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/ship3.xpm", &img->size64, &img->size64);
+	// img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/pirate.xpm", &img->size64, &img->size64);
+	// img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/ship64.xpm", &img->size64, &img->size64);
+	img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/sunny_64.xpm", &img->size64, &img->size64);
+	// img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/shanks_64.xpm", &img->size64, &img->size64);
+	// img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/turtle_ship_64.xpm", &img->size64, &img->size64);
 	return (EXIT_SUCCESS);
 }
 
 int	render(t_image *img, t_game *game)
 {
-	int		i;
-	int		j;
+	int		x;
+	int		y;
 
-	i = 0;
-	while (i < game->col)
+	y = 0;
+	while (y < game->col)
 	{
-		j = 0;
-		while (j < game->row)
+		x = 0;
+		while (x < game->row)
 		{
-			mlx_put_image_to_window(game->mlx, game->win, img->empty, j * B_SIZE, i * B_SIZE);
-			if (game->map[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->win, img->wall, j * B_SIZE, i * B_SIZE);
-			else if (game->map[i][j] == '0')
-				mlx_put_image_to_window(game->mlx, game->win, img->empty, j * B_SIZE, i * B_SIZE);
-			else if (game->map[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win, img->collect, j * B_SIZE + B_SIZE / 4, i * B_SIZE + B_SIZE / 4);
-			else if (game->map[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, img->exit, j * B_SIZE, i * B_SIZE);
-			else if (game->map[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win, img->player, j * B_SIZE, i * B_SIZE);
-			++j;
+			mlx_put_image_to_window(game->mlx, game->win, img->empty, x * B_SIZE, y * B_SIZE);
+			if (game->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx, game->win, img->wall, x * B_SIZE, y * B_SIZE);
+			else if (game->map[y][x] == '0')
+				mlx_put_image_to_window(game->mlx, game->win, img->empty, x * B_SIZE, y * B_SIZE);
+			else if (game->map[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx, game->win, img->collect, x * B_SIZE + B_SIZE / 4, y * B_SIZE);
+			else if (game->map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx, game->win, img->exit, x * B_SIZE, y * B_SIZE);
+			else if (game->map[y][x] == 'P')
+				mlx_put_image_to_window(game->mlx, game->win, img->player, x * B_SIZE, y * B_SIZE);
+			++x;
 		}
-		++i;
+		++y;
 	}
 	return (EXIT_SUCCESS);
 }
