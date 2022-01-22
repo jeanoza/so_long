@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/22 17:16:23 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/22 20:33:18 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "mlx.h"
 
 //FIXME: verify if this library is necessary...
-# include <sys/errno.h> 
-# include <string.h>
+// # include <sys/errno.h> 
+// # include <string.h>
 
 # ifndef B_SIZE
 #  define B_SIZE 64
@@ -50,6 +50,16 @@ typedef struct s_game
 	t_image	*img;
 }	t_game;
 
+/* init.c */
+t_game *game_init(char *path);
+void	image_init(t_game *game);
+/* input.c */
+int	manage_input_key(int code, t_game *game);
+/* map.c */
+int	get_map_col(t_game *game);
+void	parse_map(t_game *game);
+/* render.c */
+int	render(t_game *game);
 
 #endif
 
