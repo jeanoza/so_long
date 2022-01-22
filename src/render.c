@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:30:11 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/22 20:30:51 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/22 22:46:23 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	render(t_game *game)
 			}
 			else if (game->map[y][x] == 'E')
 			{
+				printf("exitable:%d\n", game->exitable);
 				if (game->exitable)
 					mlx_put_image_to_window(game->mlx, game->win, game->img->exit_opened, x * B_SIZE, y * B_SIZE);
 				else
