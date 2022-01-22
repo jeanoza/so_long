@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/22 15:04:29 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/22 17:51:25 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_game *game_init(char *path)
 	{
 		game->path = ft_strdup(path);
 		game->map = malloc(sizeof(char *) * get_map_col(game));
-		game->num_to_collect = 0;
 		if (game->map)
 		{
 			parse_map(game);
@@ -103,8 +102,7 @@ void	image_init(t_game *game)
 	game->img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/sea.xpm", &size, &size);
 	game->img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/key_32.xpm", &size32, &size32);
 	game->img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/trasor_key.xpm", &size, &size);
-	//TODO:when all key is collected, change trasor_key to map
-	// game->img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/map.xpm", &size, &size);
+	game->img->exit_opened = mlx_xpm_file_to_image(game->mlx, "./asset/images/map.xpm", &size, &size);
 	game->img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/pirate.xpm", &size, &size);
 }
 
@@ -114,6 +112,7 @@ int	render(t_game *game)
 	int		y;
 
 	y = 0;
+	game->num_collect = 0;
 	while (y < game->col)
 	{
 		x = 0;
@@ -126,11 +125,16 @@ int	render(t_game *game)
 				mlx_put_image_to_window(game->mlx, game->win, game->img->empty, x * B_SIZE, y * B_SIZE);
 			else if (game->map[y][x] == 'C')
 			{
-				++game->num_to_collect;
+				++game->num_collect;
 				mlx_put_image_to_window(game->mlx, game->win, game->img->collect, x * B_SIZE + B_SIZE / 4, y * B_SIZE + B_SIZE / 4);
 			}
 			else if (game->map[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, game->win, game->img->exit, x * B_SIZE, y * B_SIZE);
+			{
+				if (game->exitable)
+					mlx_put_image_to_window(game->mlx, game->win, game->img->exit_opened, x * B_SIZE, y * B_SIZE);
+				else
+					mlx_put_image_to_window(game->mlx, game->win, game->img->exit, x * B_SIZE, y * B_SIZE);
+			}
 			else if (game->map[y][x] == 'P')
 			{
 				game->px = x;
@@ -148,8 +152,6 @@ int	manage_input_key(int code, t_game *game)
 {
 	int	x;
 	int	y;
-
-	printf("ntc:%d\n", game->num_to_collect);
 
 	if (code == 53)
 		exit(EXIT_SUCCESS);
@@ -171,8 +173,16 @@ int	manage_input_key(int code, t_game *game)
 	}
 	else
 	{
-		game->map[y][x] = '0';
-		game->map[game->py][game->px] = 'P';
+		printf("location:%c(px:%d, py:%d)\n", game->map[game->py][game->px], game->px, game->py);
+		if (game->map[game->py][game->px] == 'C' && game->num_collect == 1)
+			game->exitable = 1;
+		if (game->map[game->py][game->px] == 'E' && game->exitable == 1)
+				exit(EXIT_SUCCESS);
+		if (game->map[game->py][game->px] != 'E')
+		{
+			game->map[y][x] = '0';
+			game->map[game->py][game->px] = 'P';
+		}
 	}
 	render(game);
 	return (EXIT_SUCCESS);
