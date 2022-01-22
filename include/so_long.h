@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/22 12:40:36 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/22 15:02:24 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,20 @@
 # include "libft.h"
 # include "mlx.h"
 
+# include <sys/errno.h>
+# include <string.h>
+
 # ifndef B_SIZE
 #  define B_SIZE 64
 # endif
+
+typedef struct s_image {
+	void		*wall;
+	void		*empty;
+	void		*collect;
+	void		*exit;
+	void		*player;
+}	t_image;
 
 typedef struct s_game
 {
@@ -30,21 +41,12 @@ typedef struct s_game
 	char	**map;
 	void	*mlx;
 	void	*win;
+	int		num_to_collect;
 	int		px;
 	int		py;
-	void	*p_img;
-	t_image	img;
+	t_image	*img;
 }	t_game;
 
-typedef struct s_image {
-	void		*wall;
-	void		*empty;
-	void		*collect;
-	void		*exit;
-	void		*player;
-	int			size;
-	int			size32;
-}	t_image;
 
 #endif
 
