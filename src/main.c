@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/22 01:15:45 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/22 12:41:24 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,8 @@ int	map_init(t_image *img, t_game *game)
 				mlx_put_image_to_window(game->mlx, game->win, img->exit, x * B_SIZE, y * B_SIZE);
 			else if (game->map[y][x] == 'P')
 			{
-				game->px = x * B_SIZE;
-				game->py = y * B_SIZE;
-				// mlx_put_image_to_window(game->mlx, game->win, img->player, x * B_SIZE, y * B_SIZE);
+				game->px = x;
+				game->py = y;
 				mlx_put_image_to_window(game->mlx, game->win, img->player, x * B_SIZE, y * B_SIZE);
 			}
 			++x;
@@ -123,18 +122,15 @@ int	map_init(t_image *img, t_game *game)
 int	manage_input_key(int code, t_game *game)
 {
 	if (code == 123 || code == 0)
-		game->px -= 10;
+		game->px -= 1;
 	else if (code == 124 || code == 2)
-		game->px += 10;
+		game->px += 1;
 	else if (code == 125 || code == 1)
-		game->py += 10;
+		game->py += 1;
 	else if (code == 126 || code == 13)
-		game->py -= 10;
+		game->py -= 1;
 
 	//FIXME:not function so re-render every time!
-	mlx_destroy_image(game->mlx, game->p_img);
-	int size = B_SIZE;
-	game->p_img = mlx_xpm_file_to_image(game->mlx, "./asset/images/pirate.xpm", &size, &size);
 	mlx_put_image_to_window(game->mlx, game->win, game->p_img, game->px, game->py);
 	return (EXIT_SUCCESS);
 }
