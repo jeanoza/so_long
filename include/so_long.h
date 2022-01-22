@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/20 22:23:25 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/22 01:10:26 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,33 @@ typedef struct s_game
 	char	**map;
 	void	*mlx;
 	void	*win;
+	int		px;
+	int		py;
+	void	*p_img;
 }	t_game;
 
 typedef struct s_image {
-	void	*wall;
-	void	*empty;
-	void	*collect;
-	void	*exit;
-	void	*player;
-	int		size32;
-	int		size64;
+	void		*wall;
+	void		*empty;
+	void		*collect;
+	void		*exit;
+	void		*player;
+	int			size;
+	int			size32;
 }	t_image;
 
 #endif
+
+//left = 123
+//right = 124
+//down = 125
+//up = 126
+
+//w = 13
+//a = 0
+//s = 1
+//d = 2
+//x = 7
+
+//esc = 53
+//cmd = 259
