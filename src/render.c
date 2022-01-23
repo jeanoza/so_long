@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:30:11 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 19:08:05 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 19:58:37 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ int	render(t_game *game)
 		}
 		++y;
 	}
-	printf("ntc:%d\n", game->num_collect);
 	return (EXIT_SUCCESS);
 }
