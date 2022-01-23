@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:31:10 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 16:17:35 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 19:17:11 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,11 @@ int	manage_input_key(int code, t_game *game)
 			game->exitable = 1;
 		if (game->map[game->py][game->px] == 'E' && game->exitable == 1)
 			exit(EXIT_SUCCESS);
-		else
+		if (game->map[game->py][game->px] != 'E')
 		{
 			game->map[y][x] = '0';
 			game->map[game->py][game->px] = 'P';
 		}
-		// if (game->map[game->py][game->px] != 'E')
-		// {
-		// }
 	}
 	render(game);
 	return (EXIT_SUCCESS);

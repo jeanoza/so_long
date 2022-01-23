@@ -6,13 +6,13 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 16:27:09 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 17:27:46 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_game *game_init(char *path)
+t_game	*game_init(char *path)
 {
 	t_game	*game;
 
@@ -25,7 +25,8 @@ t_game *game_init(char *path)
 		{
 			parse_map(game);
 			game->mlx = mlx_init();
-			game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE, (game->col) * B_SIZE, GAME_TITLE);
+			game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE,
+					(game->col) * B_SIZE, GAME_TITLE);
 			game->exitable = 0;
 			game->step = 0;
 			return (game);
@@ -37,8 +38,8 @@ t_game *game_init(char *path)
 
 void	image_init(t_game *game)
 {
-	int size;
-	int size32;
+	int	size;
+	int	size32;
 
 	game->img = malloc(sizeof(t_image));
 	if (game->img == NULL)
@@ -48,10 +49,16 @@ void	image_init(t_game *game)
 	}
 	size = B_SIZE;
 	size32 = B_SIZE / 2;
-	game->img->wall = mlx_xpm_file_to_image(game->mlx, "./asset/images/stone.xpm", &size, &size);
-	game->img->empty = mlx_xpm_file_to_image(game->mlx, "./asset/images/sea.xpm", &size, &size);
-	game->img->collect = mlx_xpm_file_to_image(game->mlx, "./asset/images/key_32.xpm", &size32, &size32);
-	game->img->exit = mlx_xpm_file_to_image(game->mlx, "./asset/images/trasor_key.xpm", &size, &size);
-	game->img->exit_opened = mlx_xpm_file_to_image(game->mlx, "./asset/images/map.xpm", &size, &size);
-	game->img->player = mlx_xpm_file_to_image(game->mlx, "./asset/images/pirate.xpm", &size, &size);
+	game->img->wall = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/stone.xpm", &size, &size);
+	game->img->empty = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/sea.xpm", &size, &size);
+	game->img->collect = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/key_32.xpm", &size32, &size32);
+	game->img->exit = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/trasor_key.xpm", &size, &size);
+	game->img->exit_opened = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/map.xpm", &size, &size);
+	game->img->player = mlx_xpm_file_to_image(game->mlx,
+			"./asset/images/pirate.xpm", &size, &size);
 }

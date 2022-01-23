@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/23 16:27:33 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 17:22:24 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,17 @@ typedef struct s_game
 }	t_game;
 
 /* init.c */
-t_game *game_init(char *path);
+t_game	*game_init(char *path);
 void	image_init(t_game *game);
 /* input.c */
-int	manage_input_key(int code, t_game *game);
+int		manage_input_key(int code, t_game *game);
 /* map.c */
-int	get_map_col(t_game *game);
+int		get_map_col(t_game *game);
 void	parse_map(t_game *game);
 /* render.c */
-int	render(t_game *game);
-
+int		render(t_game *game);
+/* mlx_func*/
+void	put_img(t_game *game, void *img, int x, int y);
 #endif
 
 //left = 123
