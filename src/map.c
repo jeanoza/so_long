@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:25:42 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 17:27:33 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 23:41:27 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	get_map_col(t_game *game)
 	game->col = 0;
 	while (tmp)
 	{
+		free(tmp);
 		tmp = get_next_line(fd);
 		++(game->col);
 	}

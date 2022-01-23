@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 16:13:52 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 23:41:56 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,13 @@
 int	main(int ac, char **av)
 {
 	t_game	*game;
-	(void)ac;
 
-	game = game_init(av[1]);
-	image_init(game);
+	(void)ac;
+	game = init_game(av[1]);
+	init_image(game);
 	render(game);
 	mlx_key_hook(game->win, manage_input_key, game);
 	mlx_loop(game->mlx);
-	exit (EXIT_SUCCESS);
 }
 /* basic command
 void	*mlx;
