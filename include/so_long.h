@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/22 20:33:18 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/23 16:27:33 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 
 # ifndef B_SIZE
 #  define B_SIZE 64
+# endif
+
+# ifndef GAME_TITLE
+#  define GAME_TITLE "so_long"
 # endif
 
 typedef struct s_image {
@@ -47,6 +51,7 @@ typedef struct s_game
 	int		py;
 	int		num_collect;
 	int		exitable;
+	int		step;
 	t_image	*img;
 }	t_game;
 

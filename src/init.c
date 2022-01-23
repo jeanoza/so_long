@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/22 22:47:39 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/23 16:27:09 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_game *game_init(char *path)
 	t_game	*game;
 
 	game = malloc(sizeof(t_game));
-	game->exitable = 0;
 	if (game)
 	{
 		game->path = ft_strdup(path);
@@ -26,7 +25,9 @@ t_game *game_init(char *path)
 		{
 			parse_map(game);
 			game->mlx = mlx_init();
-			game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE, (game->col) * B_SIZE, "test");
+			game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE, (game->col) * B_SIZE, GAME_TITLE);
+			game->exitable = 0;
+			game->step = 0;
 			return (game);
 		}
 	}
