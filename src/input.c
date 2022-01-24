@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:31:10 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 23:44:46 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/24 23:27:01 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	eval_next_location(int code, t_game *game, int *x, int *y)
 {
 	*x = game->px;
 	*y = game->py;
-	if (code == 123 || code == 0)
+	if (code == KEY_LEFT || code == KEY_A)
 		game->px -= 1;
-	else if (code == 124 || code == 2)
+	else if (code == KEY_RIGHT || code == KEY_D)
 		game->px += 1;
-	else if (code == 125 || code == 1)
+	else if (code == KEY_DOWN || code == KEY_S)
 		game->py += 1;
-	else if (code == 126 || code == 13)
+	else if (code == KEY_UP || code == KEY_W)
 		game->py -= 1;
 	if (game->map[game->py][game->px] == '1')
 	{
@@ -36,7 +36,7 @@ int	manage_input_key(int code, t_game *game)
 	int	tmp_x;
 	int	tmp_y;
 
-	if (code == 53)
+	if (code == KEY_ESC)
 		close_game(game, "Close by ESC");
 	else
 		eval_next_location(code, game, &tmp_x, &tmp_y);

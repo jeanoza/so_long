@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:25:42 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 23:41:27 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/24 23:38:17 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int	get_map_col(t_game *game)
 	char	*tmp;
 
 	fd = open(game->path, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error\nRead map failed");
+		exit(EXIT_FAILURE);
+	}
 	tmp = get_next_line(fd);
 	game->row = ft_strlen(tmp) - 1;
 	game->col = 0;
@@ -48,13 +53,6 @@ void	parse_map(t_game *game)
 	char	*tmp;
 
 	fd = open(game->path, O_RDONLY);
-	if (fd == -1)
-	{
-		//FIXME:How can i get errno(error number) to use with strerror function???? manual??
-		// perror(strerror(5));
-		perror("Parsing error");
-		exit(EXIT_FAILURE);
-	}
 	tmp = get_next_line(fd);
 	i = 0;
 	while (tmp)

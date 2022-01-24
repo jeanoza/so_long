@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 17:08:34 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/23 23:41:56 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/24 23:28:34 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ int	main(int ac, char **av)
 	game = init_game(av[1]);
 	init_image(game);
 	render(game);
-	mlx_key_hook(game->win, manage_input_key, game);
+	mlx_hook(game->win, EVENT_KEY_PRESS, 0, manage_input_key, game);
+	mlx_hook(game->win, EVENT_EXIT_WIN, 0, close_game_win_ctrl, game);
 	mlx_loop(game->mlx);
 }
+
 /* basic command
 void	*mlx;
 void	*win;
