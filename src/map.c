@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:25:42 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/24 23:38:17 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/25 00:31:55 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,18 @@ void	parse_map(t_game *game)
 {
 	int		fd;
 	int		i;
+	int		is_last;
 	char	*tmp;
 
+	is_last = 0;
 	fd = open(game->path, O_RDONLY);
 	tmp = get_next_line(fd);
 	i = 0;
-	while (tmp)
+	while (tmp && i < game->col)
 	{
+		if (i == game->col - 1)
+			is_last = 1;
+		printf("result:%d\n", validation_line(tmp, is_last, i));
 		(game->map)[i++] = ft_strndup_free(tmp, game->row);
 		tmp = get_next_line(fd);
 	}

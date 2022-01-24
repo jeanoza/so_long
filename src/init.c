@@ -6,13 +6,12 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/24 22:29:24 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/24 23:41:54 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//FIXME:find better way for precise error (ex: strerror(int errnum) or perror(char *)) - but necessary??
 t_game	*init_game(char *path)
 {
 	t_game	*game;

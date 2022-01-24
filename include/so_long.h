@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/24 23:38:51 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/25 00:10:33 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define KEY_D 2
 
 # define KEY_ESC 53
-
 
 typedef struct s_image {
 	void		*wall;
@@ -82,17 +81,3 @@ int	close_game_win_ctrl(t_game *game);
 int	close_game(t_game *game, const char *close_msg);
 int	exit_malloc_error(const char *where, const char *var);
 #endif
-
-//left = 123
-//right = 124
-//down = 125
-//up = 126
-
-//w = 13
-//a = 0
-//s = 1
-//d = 2
-//x = 7
-
-//esc = 53
-//cmd = 259
