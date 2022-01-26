@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:25:42 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/26 22:57:50 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/26 23:53:19 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static int	validation_line(t_game *game, char *line, int y)
 {
 	int	x;
 
+	if (game->col < 4 || game->row < 4)
+		exit_parse_map_error(game->map, y, 0, "Too small");
 	if (ft_strlen(line) - 1 != game->row)
-		exit_parse_map_error(game->map, y, 0,
-			"All row length is not same");
+		exit_parse_map_error(game->map, y, 0, "All row length is not same");
 	x = 0;
 	while (x < game->row)
 	{
@@ -50,8 +51,8 @@ static int	validation_line(t_game *game, char *line, int y)
  */
 int	get_map_col(t_game *game)
 {
-	int		fd;
-	char	*tmp;
+	int			fd;
+	char		*tmp;
 
 	fd = open(game->path, O_RDONLY);
 	if (fd == -1)
@@ -64,6 +65,8 @@ int	get_map_col(t_game *game)
 	game->col = 0;
 	while (tmp)
 	{
+		if (tmp[0] == '\n')
+			exit_empty_error(tmp);
 		free(tmp);
 		tmp = get_next_line(fd);
 		++(game->col);

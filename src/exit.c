@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 21:51:39 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/26 22:59:51 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/26 23:53:14 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,12 @@ int	exit_parse_map_error(char **map, int nth_y, int done, const char *msg)
 		printf("Error\nwrong map: %s\n", msg);
 	else
 		printf("Error\nwrong map: %s (line: %d)\n", msg, nth_y + 1);
+	exit(EXIT_FAILURE);
+}
+
+int	exit_empty_error(char *line)
+{
+	free(line);
+	printf("Error\nEmpty line");
 	exit(EXIT_FAILURE);
 }
