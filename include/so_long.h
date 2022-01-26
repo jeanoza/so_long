@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/25 00:10:33 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/26 22:55:27 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct s_game
 	int		px;
 	int		py;
 	int		num_collect;
+	int		num_player;
+	int		num_exit;
 	int		exitable;
 	int		step;
 	t_image	*img;
@@ -77,7 +79,8 @@ void	put_img(t_game *game, void *img, int x, int y);
 void	*xpm_to_img(t_game *game, char *path);
 void	*xpm_to_img32(t_game *game, char *path);
 /* exit.c */
-int	close_game_win_ctrl(t_game *game);
-int	close_game(t_game *game, const char *close_msg);
-int	exit_malloc_error(const char *where, const char *var);
+int		close_game_win_ctrl(t_game *game);
+int		close_game(t_game *game, const char *close_msg);
+int		exit_malloc_error(const char *where, const char *var);
+int		exit_parse_map_error(char **map, int nth_y, int done, const char *msg);
 #endif

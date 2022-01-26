@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 21:51:39 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/24 23:17:44 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/26 22:59:51 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,20 @@ int	close_game(t_game *game, const char *close_msg)
 int	exit_malloc_error(const char *where, const char *var)
 {
 	printf("Error\n%s init failed : can't malloc `%s`\n", where, var);
+	exit(EXIT_FAILURE);
+}
+
+int	exit_parse_map_error(char **map, int nth_y, int done, const char *msg)
+{
+	int	i;
+
+	i = 0;
+	while (i < nth_y)
+		free(map[i++]);
+	free(map);
+	if (done)
+		printf("Error\nwrong map: %s\n", msg);
+	else
+		printf("Error\nwrong map: %s (line: %d)\n", msg, nth_y + 1);
 	exit(EXIT_FAILURE);
 }
