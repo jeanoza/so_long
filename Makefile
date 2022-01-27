@@ -2,7 +2,7 @@ HEADER		=	./includes/
 
 LIB_PATH	=	./lib/
 
-LIBS		=	libft mlx
+LIBS		=	$(addprefix $(LIB_PATH), libft/ mlx/)
 
 SRC_PATH	=	./src/
 
@@ -20,16 +20,16 @@ OBJS		=	$(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra -I $(HEADER) -I $(addprefix $(LIB_PATH), $(LIBS)) 
+CFLAGS		=	-Wall -Werror -Wextra
 
 NAME		=	so_long
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
+				make -C 
 				@mkdir -p $(OBJ_PATH)
-				$(CC) -o $@ -c $< -I $(HEADER)
+				$(CC) -o $@ -c $< -I $(HEADER) -I $(LIBS)
 
 $(NAME):		$(OBJS)
-				ar rcs $@ $^
 
 all:			$(NAME)
 

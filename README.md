@@ -11,6 +11,7 @@
 ```
 ❯ gcc src/*.c -c -I include
 ❯ gcc ./*.o -o so_long -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
+  gcc ./*.o -o so_long -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
 ```
 
 ### FIXME
@@ -23,3 +24,7 @@
 [ ] step draw with mlx && put in render()
 [ ] main / end screen ?
 reference: https://github.com/devleomk1/so_long
+
+
+gcc -c ./src/*.c -I ./include -I ./lib/libft             
+
