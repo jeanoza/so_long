@@ -8,6 +8,11 @@
   gcc src/*.c -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
 ```
 
+```
+❯ gcc src/*.c -c -I include
+❯ gcc ./*.o -o so_long -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
+```
+
 ### FIXME
 
 1.  src or srcs? include or includes ..... etc
