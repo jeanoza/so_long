@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/26 23:51:48 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/27 21:42:45 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,8 @@ void	*xpm_to_img32(t_game *game, char *path);
 /* exit.c */
 int		close_game_win_ctrl(t_game *game);
 int		close_game(t_game *game, const char *close_msg);
-int		exit_malloc_error(const char *where, const char *var);
+// int		exit_malloc_error(const char *where, const char *var);
+int		exit_malloc_error(t_game *game, const char *where);
 int		exit_parse_map_error(char **map, int nth_y, int done, const char *msg);
 int		exit_empty_error(char *line);
 #endif

@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:30:11 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/26 22:08:25 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/27 20:04:48 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	render(t_game *game)
 	int		x;
 	int		y;
 
+	// char *hello = "hello\n";
 	y = 0;
 	while (y < game->col)
 	{
@@ -56,5 +57,6 @@ int	render(t_game *game)
 		}
 		++y;
 	}
+	mlx_string_put(game->mlx, game->win, 0 , (game->col + 1) * B_SIZE, 0xFFFFFF, "hello");
 	return (EXIT_SUCCESS);
 }

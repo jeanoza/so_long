@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:31:10 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/24 23:27:01 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/27 21:27:58 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	eval_next_location(int code, t_game *game, int *x, int *y)
 		game->px = *x;
 		game->py = *y;
 	}
+	if (game->map[game->py][game->px] == 'C')
+		--game->num_collect;
 }
 
 int	manage_input_key(int code, t_game *game)
@@ -37,13 +39,13 @@ int	manage_input_key(int code, t_game *game)
 	int	tmp_y;
 
 	if (code == KEY_ESC)
-		close_game(game, "Close by ESC");
+		close_game(game, "Close by ESC", 0);
 	else
 		eval_next_location(code, game, &tmp_x, &tmp_y);
-	if (game->map[game->py][game->px] == 'C' && game->num_collect == 1)
+	if (game->map[game->py][game->px] == 'C' && game->num_collect == 0)
 		game->exitable = 1;
 	if (game->map[game->py][game->px] == 'E' && game->exitable == 1)
-		close_game(game, "Goal found!!\nCongraturations!!\n");
+		close_game(game, "Goal found!!\nCongraturations!!\n", 0);
 	if (game->map[game->py][game->px] != 'E')
 	{
 		if (game->px != tmp_x || game->py != tmp_y)

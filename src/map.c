@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:25:42 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/26 23:53:19 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/27 19:01:23 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	validation_line(t_game *game, char *line, int y)
 
 	if (game->col < 4 || game->row < 4)
 		exit_parse_map_error(game->map, y, 0, "Too small");
-	if (ft_strlen(line) - 1 != game->row)
+	if ((int) ft_strlen(line) - 1 != game->row)
 		exit_parse_map_error(game->map, y, 0, "All row length is not same");
 	x = 0;
 	while (x < game->row)

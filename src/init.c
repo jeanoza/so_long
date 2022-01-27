@@ -6,7 +6,7 @@
 /*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/24 23:41:54 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/27 21:53:58 by kyubongchoi      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,24 @@ t_game	*init_game(char *path)
 
 	game = malloc(sizeof(t_game));
 	if (game == NULL)
-		exit_malloc_error("Game", "game");
+		exit_malloc_error(game, "game");
 	game->path = ft_strdup(path);
 	if (game->path == NULL)
-		exit_malloc_error("Game", "game->path");
+	{
+		// free(game);
+		exit_malloc_error(game, "game->path");
+	}
 	game->map = malloc(sizeof(char *) * get_map_col(game));
-	if (game->map == NULL)
-		exit_malloc_error("Game", "game->map");
+	if (game->map != NULL)
+	{
+		// free(game->path);
+		// free(game);
+		exit_malloc_error(game, "game->map");
+	}
 	parse_map(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE,
-			(game->col) * B_SIZE, GAME_TITLE);
+			(game->col + 1) * B_SIZE, GAME_TITLE);
 	game->exitable = 0;
 	game->step = 0;
 	return (game);
@@ -41,7 +48,7 @@ void	init_image(t_game *game)
 
 	game->img = malloc(sizeof(t_image));
 	if (game->img == NULL)
-		exit_malloc_error("Image", "game->image");
+		exit_malloc_error(game, "game->image");
 	size = B_SIZE;
 	size32 = B_SIZE / 2;
 	game->img->wall = xpm_to_img(game, "./asset/images/stone.xpm");

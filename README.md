@@ -3,28 +3,15 @@
 - Framework in macos(M1): /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks
 - Compile :
 
-```zsh
-  $ gcc src/*.c -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
-  gcc src/*.c -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
-```
-
-```
-❯ gcc src/*.c -c -I include
-❯ gcc ./*.o -o so_long -I include -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
-  gcc ./*.o -o so_long -I lib/libft -I lib/mlx  -L lib/libft -lft -L lib/mlx -lmlx -framework OpenGL -framework Appkit
-```
-
 ### FIXME
 
 1.  src or srcs? include or includes ..... etc
 
 ### TODO:
 
-[ ] make file
+[x] make file
+
 [ ] step draw with mlx && put in render()
+
 [ ] main / end screen ?
 reference: https://github.com/devleomk1/so_long
-
-
-gcc -c ./src/*.c -I ./include -I ./lib/libft             
-
