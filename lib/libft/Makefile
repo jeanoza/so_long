@@ -50,20 +50,18 @@ SRCS		=	ft_isalpha.c \
 
 OBJ_PATH	=	./bin/
 
-OBJ_NAME	=	$(SRCS:.c=.o)
-
-OBJS 		=	$(addprefix $(OBJ_PATH), $(OBJ_NAME))
+OBJS 		=	$(addprefix $(OBJ_PATH), $(SRCS:.c=.o))
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra -I $(HEADER)
+CFLAGS		=	-Wall -Werror -Wextra
 
 NAME		=	libft.a
 
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
-				$(CC) -o $@ -c $< -I $(HEADER)
+				$(CC) $(CFLAGS) -o $@ -c $< -I $(HEADER)
 
 $(NAME):		$(OBJS)
 				ar rcs $@ $^
