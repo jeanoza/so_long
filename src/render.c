@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:30:11 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/27 20:04:48 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/28 15:55:31 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ static void	switch_case_render(t_game *game, int x, int y)
 
 int	render(t_game *game)
 {
-	int		x;
-	int		y;
+	int			x;
+	int			y;
+	char		*step;
 
-	// char *hello = "hello\n";
+	mlx_clear_window(game->mlx, game->win);
 	y = 0;
 	while (y < game->col)
 	{
@@ -57,6 +58,11 @@ int	render(t_game *game)
 		}
 		++y;
 	}
-	mlx_string_put(game->mlx, game->win, 0 , (game->col + 1) * B_SIZE, 0xFFFFFF, "hello");
+	step = ft_itoa(game->step);
+	mlx_string_put(game->mlx, game->win, 0,
+		(game->col + 0.5) * B_SIZE, 0xFFFFFF, "STEP:");
+	mlx_string_put(game->mlx, game->win, 100,
+		(game->col + 0.5) * B_SIZE, 0xFFFFFF, step);
+	free(step);
 	return (EXIT_SUCCESS);
 }

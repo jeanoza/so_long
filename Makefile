@@ -19,6 +19,7 @@ SRCS		=	exit.c \
 				map.c \
 				mlx_func.c \
 				render.c \
+				error.c \
 
 OBJ_PATH	=	./bin/
 

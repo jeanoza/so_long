@@ -6,13 +6,13 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:31:10 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/28 12:37:16 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/28 15:59:14 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	eval_next_location(int code, t_game *game, int *x, int *y)
+static void	eval_next_location(int code, t_game *game, int *x, int *y)
 {
 	*x = game->px;
 	*y = game->py;
