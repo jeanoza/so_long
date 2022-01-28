@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/28 13:54:01 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/28 16:52:32 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define KEY_D 2
 
 # define KEY_ESC 53
+
+/* step pixel location to add */
+# define STEP_PIX_Y 12
 
 typedef struct s_image {
 	void		*wall;

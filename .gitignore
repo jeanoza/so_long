@@ -9,3 +9,6 @@ a.out.dSYM/
 #.a file
 *.a
 libft.so
+
+so_long
+so_long_bonus

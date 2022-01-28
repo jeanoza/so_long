@@ -33,6 +33,8 @@ CFLAGS_FSAN	=	-Wall -Werror -Wextra -g3 -fsanitize=address
 
 NAME		=	so_long
 
+NAME_BONUS	=	so_long_bonus
+
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 				@mkdir -p $(OBJ_PATH)
 				$(CC) $(CFLAGS) $(HEADER_INC) $(LIB_INC) -c $< -o $@
@@ -42,7 +44,12 @@ $(NAME):		$(OBJS)
 				make -C $(MLX_PATH)
 				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
-all:			$(NAME)
+$(NAME_BONUS):	$(OBJS)
+				make -C $(LIBFT_PATH)
+				make -C $(MLX_PATH)
+				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
+
+all:			$(NAME) $(NAME_BONUS)
 
 clean:
 				rm -rf $(OBJ_PATH)
@@ -50,8 +57,10 @@ clean:
 				make -C $(MLX_PATH) clean
 
 fclean:			clean
-				rm -f $(NAME)
+				rm -f $(NAME) $(NAME_BONUS)
 
 re: 			fclean all
 
-.PHONY:			all clean fclean re
+bonus:			$(NAME_BONUS)
+
+.PHONY:			all clean fclean re bonus

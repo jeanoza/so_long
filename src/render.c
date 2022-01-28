@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:30:11 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/28 15:55:31 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/28 16:52:49 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	render(t_game *game)
 	}
 	step = ft_itoa(game->step);
 	mlx_string_put(game->mlx, game->win, 0,
-		(game->col + 0.5) * B_SIZE, 0xFFFFFF, "STEP:");
+		(game->col * B_SIZE) + STEP_PIX_Y, 0xFFFFFF, "STEP:");
 	mlx_string_put(game->mlx, game->win, 100,
-		(game->col + 0.5) * B_SIZE, 0xFFFFFF, step);
+		(game->col * B_SIZE) + STEP_PIX_Y, 0xFFFFFF, step);
 	free(step);
 	return (EXIT_SUCCESS);
 }

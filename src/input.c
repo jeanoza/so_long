@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:31:10 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/28 16:00:17 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/28 16:09:05 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	manage_input_key(int code, t_game *game)
 	if (game->map[game->py][game->px] == 'C' && game->num_collect == 0)
 		game->exitable = 1;
 	if (game->map[game->py][game->px] == 'E' && game->exitable == 1)
+	{
+		printf("step:%d\n", ++game->step);
 		close_game(game, "Goal found!!\nCongraturations!!\n");
+	}
 	if (game->map[game->py][game->px] != 'E')
 	{
 		if (game->px != tmp_x || game->py != tmp_y)

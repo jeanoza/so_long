@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/28 14:16:22 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/28 16:53:32 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_game	*init_game(char *path)
 	parse_map(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE,
-			(game->col + 1) * B_SIZE, GAME_TITLE);
+			(game->col * B_SIZE) + STEP_PIX_Y, GAME_TITLE);
 	game->exitable = 0;
 	game->step = 0;
 	return (game);
