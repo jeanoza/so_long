@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kyubongchoi <kyubongchoi@student.42.fr>    +#+  +:+       +#+        */
+/*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 21:51:39 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/27 21:54:38 by kyubongchoi      ###   ########.fr       */
+/*   Updated: 2022/01/28 13:25:32 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,8 @@ int	close_game(t_game *game, const char *close_msg)
 
 int	exit_malloc_error(t_game *game, const char *where)
 {
-	printf("game:%p\t game->path:%p\t game->img:%p\n",game, game->path, game->img);
-	// if (game->img)
-	// 	free(game->img);
-	// if (game->path)
-	// 	free(game->path);
-	if (game->map)
-		free(game->map);
-	free(game);
-	while (1);
+	if (game)
+		free_all(game);
 	printf("Error\nGame init failed : can't malloc `%s`\n", where);
 	exit(EXIT_FAILURE);
 }
