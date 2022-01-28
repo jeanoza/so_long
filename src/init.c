@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/28 16:53:32 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/01/28 17:18:57 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_game	*init_game(char *path)
 {
 	t_game	*game;
+	int		i;
 
 	game = malloc(sizeof(t_game));
 	game->path = NULL;
@@ -27,6 +28,9 @@ t_game	*init_game(char *path)
 	game->map = malloc(sizeof(char *) * get_map_col(game));
 	if (game->map == NULL)
 		exit_malloc_error(game, "game->map");
+	i = 0;
+	while (i < game->col)
+		game->map[i++] = NULL;
 	parse_map(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, (game->row) * B_SIZE,
