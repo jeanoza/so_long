@@ -7,5 +7,5 @@ a.out.dSYM/
 *.o
 
 #.a file
-libft.a
+*.a
 libft.so
