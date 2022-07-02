@@ -6,7 +6,7 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 20:28:48 by kychoi            #+#    #+#             */
-/*   Updated: 2022/01/28 17:18:57 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/06/26 16:21:37 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ t_game	*init_game(char *path)
 
 void	init_image(t_game *game)
 {
-	int	size;
-	int	size32;
+	// int	size = B_SIZE;
+	// int	size32 = B_SIZE / 2;
 
+	// // size = B_SIZE;
+	// // size32 = B_SIZE / 2;
 	game->img = NULL;
 	game->img = malloc(sizeof(t_image));
 	if (game->img == NULL)
 		exit_malloc_error(game, "game->image");
-	size = B_SIZE;
-	size32 = B_SIZE / 2;
 	game->img->wall = xpm_to_img(game, "./asset/images/stone.xpm");
 	game->img->empty = xpm_to_img(game, "./asset/images/sea.xpm");
 	game->img->collect = xpm_to_img32(game, "./asset/images/key_32.xpm");

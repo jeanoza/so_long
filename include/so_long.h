@@ -6,13 +6,13 @@
 /*   By: kychoi <kychoi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 17:58:10 by kyubongchoi       #+#    #+#             */
-/*   Updated: 2022/01/28 16:52:32 by kychoi           ###   ########.fr       */
+/*   Updated: 2022/06/26 16:33:18 by kychoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include <OpenGL/gl.h>
+// # include <OpenGL/gl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include "libft.h"

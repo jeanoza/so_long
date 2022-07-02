@@ -6,6 +6,12 @@ LIBFT_PATH	=	$(LIB_PATH)libft
 
 MLX_PATH	=	$(LIB_PATH)mlx
 
+ifeq ($(shell uname -m), arm64)
+	MLX_FLAG	:=  -lmlx -framework OpenGL
+else
+	MLX_FLAG	:=  -lmlx -lXext -lX11
+endif
+
 LIBS		=	libft mlx
 
 LIB_INC		=	$(addprefix -I$(LIB_PATH), $(LIBS))
@@ -42,12 +48,12 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 $(NAME):		$(OBJS)
 				make -C $(LIBFT_PATH)
 				make -C $(MLX_PATH)
-				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) $(MLX_FLAG) -o $(NAME)
 
 $(NAME_BONUS):	$(OBJS)
 				make -C $(LIBFT_PATH)
 				make -C $(MLX_PATH)
-				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit -o $(NAME_BONUS)
+				$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_PATH) -lft -L$(MLX_PATH) $(MLX_FLAG) -o $(NAME_BONUS)
 
 all:			$(NAME) $(NAME_BONUS)
 
